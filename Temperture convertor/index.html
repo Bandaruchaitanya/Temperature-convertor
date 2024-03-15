@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content= "width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="styles.css" />
+        <title>Temperature Convertor</title>
+    </head>
+    <body>
+        <div class="convertor">
+            <h2>Temperature Convertor</h2>
+            <label for="fromUnit">From:</label>
+            <select id="fromUnit">
+                <option value="C">Celcious</option>
+                <option value="F">Fahrenheit</option>
+                <option value="K">Kelvin</option>
+            </select>
+            <label for="toUnit">To:</label>
+            <select id="toUnit">
+                <option value="C">Celcious</option>
+                <option value="F">Fahrenheit</option>
+                <option value="K">Kelvin</option>
+            </select>
+            <label for="temperature">Temperture</label> 
+            <input type="number" id="temperature" placeholder="Enter Temperature">
+            <button onclick="convert()">Convert</button>
+            <label for="result">Result:</label> 
+            <input type="text" id= "result" readonly>
+            <Script>
+                function convert(){
+                    var fromUnit = document.getElementById('fromUnit').value;
+                    var toUnit = document.getElementById('toUnit').value; 
+                    var temperature=parseFloat(document.getElementById("temperature").value);
+
+                    var convertedValue;
+                    var resultUnit;
+
+                    switch(fromUnit){
+                        case 'C':
+                            if(toUnit === 'F'){
+                                convertedValue = (temperature * 1.8) + 32;
+                                resultUnit = 'F';
+                            } else if(toUnit === 'K'){
+                                ConvertedValue = temperature + 273.15;
+                                resultUnit = 'K';
+                            } else {
+                                ConvertedValue = temperature ;
+                                resultUnit = '';
+                            }
+                            break;
+                
+                        case 'F':
+                            if(toUnit === 'C'){
+                                convertedValue = (temperature - 32)* (5/9);
+                                resultUnit = 'C';
+                            } else if(toUnit === 'K'){
+                                ConvertedValue =((temperature - 32)/1.8 )+ 273.15;
+                                resultUnit = 'K';
+                            } else {
+                                ConvertedValue = temperature ;
+                                    resultUnit = 'F';
+                            }
+                            break;
+
+                        case 'K':
+                            if(toUnit === 'C'){
+                                convertedValue = temperature - 273.15;
+                                resultUnit ='C';
+                            } else if(toUnit === 'F'){
+                                ConvertedValue = (temperature * 1.8) - 459.67;
+                                resultUnit = 'F';
+                            } else {
+                                ConvertedValue = temperature ;
+                                resultUnit = 'K';
+                            }
+                            break;
+                    }
+                    
+                        document.getElementById ('result').value = convertedValue.toFixed(2) + resultUnit;
+                } 
+                
+            </Script> 
+        </div>
+    </body>
+</html>
